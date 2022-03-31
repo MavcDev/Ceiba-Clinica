@@ -29,24 +29,23 @@ pipeline {
       steps{
         echo "------------>Compile & Unit Tests<------------"
         sh 'chmod +x Clinica/java-arquitectura-hexagonal/comun/gradlew'
+        sh 'Clinica/java-arquitectura-hexagonal/comun/gradlew --b Clinica/java-arquitectura-hexagonal/microservicio/build.gradle clean'
         sh 'Clinica/java-arquitectura-hexagonal/comun/gradlew --b Clinica/java-arquitectura-hexagonal/microservicio/build.gradle test'
       }
     }
 
     stage('Static Code Analysis') {
       steps{
-        echo '------------>Análisis de código estático<------------'  
-        echo '${HOME}'
-        withSonarQubeEnv('Sonar') {
-            sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-        }
+        echo '------------>Análisis de código estático<------------'
+        //withSonarQubeEnv('Sonar') {
+            //sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+        //}
       }
     }
 
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-        sh 'chmod +x Clinica/java-arquitectura-hexagonal/comun/gradlew'
         sh 'Clinica/java-arquitectura-hexagonal/comun/gradlew --b Clinica/java-arquitectura-hexagonal/microservicio/build.gradle clean'
         sh 'Clinica/java-arquitectura-hexagonal/comun/gradlew --b Clinica/java-arquitectura-hexagonal/microservicio/build.gradle build'
       }

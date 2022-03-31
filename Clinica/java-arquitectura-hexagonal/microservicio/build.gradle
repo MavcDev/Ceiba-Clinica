@@ -98,6 +98,7 @@ dependencies {
 }
 
 bootJar {
+	System.out.println("Hola Mundo");
 	mainClassName = 'com.ceiba.Application'
     baseName = 'solicitudcita'
     version =  version
