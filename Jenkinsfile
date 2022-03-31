@@ -28,8 +28,8 @@ pipeline {
     stage('Compile & Unit Tests') {
       steps{
         echo "------------>Compile & Unit Tests<------------"
-        sh 'chmod +x /Clinica/java-arquitectura-hexagonal/comun/gradlew'
-        sh '/Clinica/java-arquitectura-hexagonal/comun/gradlew --b /Clinica/java-arquitectura-hexagonal/microservicio/build.gradle test'
+        sh 'chmod +x Clinica/java-arquitectura-hexagonal/comun/gradlew'
+        sh 'Clinica/java-arquitectura-hexagonal/comun/gradlew --b Clinica/java-arquitectura-hexagonal/microservicio/build.gradle test'
       }
     }
 
