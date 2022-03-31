@@ -98,7 +98,8 @@ dependencies {
 }
 
 bootJar {
-	System.out.println("Hola Mundo");
+	String homeDir = System.getProperty("user.home");
+	System.out.println(homeDir);
 	mainClassName = 'com.ceiba.Application'
     baseName = 'solicitudcita'
     version =  version
