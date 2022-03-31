@@ -45,7 +45,7 @@ pipeline {
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-        sh './gradlew --b ./build.gradle build -x test'
+        sh 'Clinica/java-arquitectura-hexagonal/comun/gradlew --b Clinica/java-arquitectura-hexagonal/microservicio/build.gradle build -x test'
       }
     }  
   }
