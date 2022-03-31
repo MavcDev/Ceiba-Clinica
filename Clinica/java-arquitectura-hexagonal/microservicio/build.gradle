@@ -98,19 +98,6 @@ dependencies {
 }
 
 bootJar {
-	String homeDir = System.getProperty("user.home");
-	System.out.println(homeDir);
-	File fileHome = new File("/home");
-	for(File files : fileHome.listFiles()){
-		System.out.println(files.getAbsolutePath());
-	}
-
-	File fileHome2 = new File(homeDir);
-	for(File files : fileHome2.listFiles()){
-		System.out.println(files.getAbsolutePath());
-	}
-
-
 	mainClassName = 'com.ceiba.Application'
     baseName = 'solicitudcita'
     version =  version
