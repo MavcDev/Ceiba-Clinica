@@ -20,8 +20,6 @@ public class ServicioConsultaUsuarioTest {
     @Test
     @DisplayName("Deberia lanzar una exepcion sin datos")
     void deberiaLanzarUnaExepcionCuandoSeValideLaExistenciaDelUsuario() {
-        Usuario usuario = new UsuarioTestDataBuilder().build();
-
         DaoUsuario daoUsuario = Mockito.mock(DaoUsuario.class);
         RepositorioUsuario repositorioUsuario = Mockito.mock(RepositorioUsuario.class);
         Mockito.when(repositorioUsuario.existe(Mockito.anyString())).thenReturn(false);
@@ -34,7 +32,6 @@ public class ServicioConsultaUsuarioTest {
     @Test
     @DisplayName("Deberia devolver un dto del usuario")
     void deberiaDevolverUnDtoUsuario() {
-        Usuario usuario = new UsuarioTestDataBuilder().build();
         DtoPresentacionUsuario dtoPresentacionUsuario = new DtoPresentacionUsuario(
                 1L,
                 "1117522445",
