@@ -2,6 +2,7 @@ package com.ceiba.solicitudcita.servicio.testdatabuilder;
 
 import com.ceiba.solicitudcita.comando.ComandoSolicitudCita;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -20,6 +21,10 @@ public class ComandoSolicitudCitaTestDataBuilder {
         idEspecialidad = 1L;
         fechaSolicitud = LocalDateTime.now();
         fechaCita = LocalDate.now().plusDays(1);
+        while (fechaCita.getDayOfWeek() == DayOfWeek.SATURDAY || fechaCita.getDayOfWeek() == DayOfWeek.SUNDAY){
+            fechaCita = fechaCita.plusDays(1);
+        }
+
         idHorario = 1L;
     }
 
