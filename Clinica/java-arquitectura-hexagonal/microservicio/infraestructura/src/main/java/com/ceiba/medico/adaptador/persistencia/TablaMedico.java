@@ -1,6 +1,6 @@
 package com.ceiba.medico.adaptador.persistencia;
 
-public class TablaMedico {
+public final class TablaMedico {
     protected static final String ID = "id";
     protected static final String IDENTIFICACION = "identificacion";
     protected static final String NOMBRE = "nombre";

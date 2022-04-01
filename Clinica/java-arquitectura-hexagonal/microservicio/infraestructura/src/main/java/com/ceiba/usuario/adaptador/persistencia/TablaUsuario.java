@@ -1,6 +1,6 @@
 package com.ceiba.usuario.adaptador.persistencia;
 
-public class TablaUsuario {
+public final class TablaUsuario {
     protected static final String ID = "id";
     protected static final String IDENTIFICACION = "identificacion";
     protected static final String NOMBRE = "nombre";

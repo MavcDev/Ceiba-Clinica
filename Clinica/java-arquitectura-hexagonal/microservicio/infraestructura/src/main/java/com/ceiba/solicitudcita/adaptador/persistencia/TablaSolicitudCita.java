@@ -1,6 +1,6 @@
 package com.ceiba.solicitudcita.adaptador.persistencia;
 
-public class TablaSolicitudCita {
+public final class TablaSolicitudCita {
     protected static final String ID = "id";
     protected static final String MEDICO = "fk_medico";
     protected static final String USUARIO = "fk_usuario";

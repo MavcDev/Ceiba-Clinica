@@ -30,6 +30,7 @@ class MedicoTest {
         assertEquals("Sanchez", medico.getSegundoApellido());
         assertEquals(fechaNacimiento, medico.getFechaNacimiento());
         assertNotNull(medico.getEspecialidad());
+        assertEquals("Camilo Andres Perez Sanchez", medico.getNombreCompleto());
     }
 
     // Identificacion
