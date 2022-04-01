@@ -23,7 +23,6 @@ public class ServicioConsultaUsuarioTest {
         DaoUsuario daoUsuario = Mockito.mock(DaoUsuario.class);
         RepositorioUsuario repositorioUsuario = Mockito.mock(RepositorioUsuario.class);
         Mockito.when(repositorioUsuario.existe(Mockito.anyString())).thenReturn(false);
-
         ServicioConsultaUsuario servicioConsultaUsuario = new ServicioConsultaUsuario(repositorioUsuario, daoUsuario);
 
         BasePrueba.assertThrows(() -> servicioConsultaUsuario.buscarPorIdentificacion("1117522445"), ExcepcionSinDatos.class,"El usuario no existe");
@@ -42,8 +41,8 @@ public class ServicioConsultaUsuarioTest {
         Mockito.when(daoUsuario.buscarPorIdentificacion(Mockito.anyString())).thenReturn(dtoPresentacionUsuario);
         RepositorioUsuario repositorioUsuario = Mockito.mock(RepositorioUsuario.class);
         Mockito.when(repositorioUsuario.existe(Mockito.anyString())).thenReturn(true);
-
         ServicioConsultaUsuario servicioConsultaUsuario = new ServicioConsultaUsuario(repositorioUsuario, daoUsuario);
+        
         DtoPresentacionUsuario dtoPresentacionUsuarioRespuesta = servicioConsultaUsuario.buscarPorIdentificacion("1117522445");
 
         assertEquals(dtoPresentacionUsuario.getId(), dtoPresentacionUsuarioRespuesta.getId());
