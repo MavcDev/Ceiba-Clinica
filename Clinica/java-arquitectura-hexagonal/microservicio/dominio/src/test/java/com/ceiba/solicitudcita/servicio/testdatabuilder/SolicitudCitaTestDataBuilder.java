@@ -10,6 +10,7 @@ import com.ceiba.solicitudcita.modelo.entidad.SolicitudCita;
 import com.ceiba.usuario.modelo.entidad.Usuario;
 import com.ceiba.usuario.servicio.testdatabuilder.UsuarioTestDataBuilder;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -30,6 +31,9 @@ public class SolicitudCitaTestDataBuilder {
         horarioDia = new HorarioDiaTestDataBuilder().conId(1L).build();
         fechaSolicitud = LocalDateTime.now();
         fechaCita = LocalDate.now().plusDays(1L);
+        while (fechaCita.getDayOfWeek() == DayOfWeek.SATURDAY || fechaCita.getDayOfWeek() == DayOfWeek.SUNDAY){
+            fechaCita = fechaCita.plusDays(1);
+        }
     }
 
     public SolicitudCitaTestDataBuilder conId(Long id) {

@@ -24,7 +24,6 @@ public class ComandoSolicitudCitaTestDataBuilder {
         while (fechaCita.getDayOfWeek() == DayOfWeek.SATURDAY || fechaCita.getDayOfWeek() == DayOfWeek.SUNDAY){
             fechaCita = fechaCita.plusDays(1);
         }
-
         idHorario = 1L;
     }
 

@@ -9,6 +9,7 @@ import com.ceiba.solicitudcita.servicio.testdatabuilder.SolicitudCitaTestDataBui
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -29,6 +30,9 @@ class SolicitudCitaTest {
         assertEquals(1L, solicitudCita.getHorarioDia().getId());
         assertEquals(LocalDate.now(), solicitudCita.getFechaSolicitud().toLocalDate());
         LocalDate fechaCita = LocalDate.now().plusDays(1L);
+        while (fechaCita.getDayOfWeek() == DayOfWeek.SATURDAY || fechaCita.getDayOfWeek() == DayOfWeek.SUNDAY){
+            fechaCita = fechaCita.plusDays(1);
+        }
         assertEquals(fechaCita, solicitudCita.getFechaCita());
     }
 
