@@ -8,6 +8,7 @@ import com.ceiba.medico.modelo.entidad.Medico;
 import com.ceiba.medico.servicio.testdatabuilder.MedicoTestDataBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 
@@ -31,6 +32,22 @@ class MedicoTest {
         assertEquals(fechaNacimiento, medico.getFechaNacimiento());
         assertNotNull(medico.getEspecialidad());
         assertEquals("Camilo Andres Perez Sanchez", medico.getNombreCompleto());
+    }
+
+    @Test
+    @DisplayName("Deberia crear correctamente el medico sin segundo apellido")
+    void deberiaCrearCorrectamenteElMedicoSinSegundoApellido() {
+        LocalDate fechaNacimiento = LocalDate.from(LocalDate.of(1991, 12, 20));
+        Medico medico = new MedicoTestDataBuilder().conId(1L).conSegundoApellido(null).build();
+
+        assertEquals(1, medico.getId());
+        assertEquals("1117522448", medico.getIdentificacion());
+        assertEquals("Camilo Andres", medico.getNombres());
+        assertEquals("Perez", medico.getPrimerApellido());
+        Assert.isNull(medico.getSegundoApellido(), "Sin segundo apellido");
+        assertEquals(fechaNacimiento, medico.getFechaNacimiento());
+        assertNotNull(medico.getEspecialidad());
+        assertEquals("Camilo Andres Perez", medico.getNombreCompleto());
     }
 
     // Identificacion

@@ -91,6 +91,6 @@ public abstract class Persona {
     }
 
     public String getNombreCompleto(){
-        return  String.format("%s %s %s",nombres, primerApellido, segundoApellido == null ? "" : segundoApellido);
+        return  String.format("%s %s %s",nombres, primerApellido, segundoApellido == null ? "" : segundoApellido).trim();
     }
 }

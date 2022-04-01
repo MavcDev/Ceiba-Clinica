@@ -8,6 +8,7 @@ import com.ceiba.usuario.modelo.entidad.Usuario;
 import com.ceiba.usuario.servicio.testdatabuilder.UsuarioTestDataBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,7 +25,6 @@ class UsuarioTest {
     void deberiaCrearCorrectamenteElUsusuario() {
         LocalDate fechaNacimiento = LocalDate.from(LocalDate.of(1991, 12, 20));
         LocalDateTime fechaCreacion = LocalDateTime.now();
-
         Usuario usuario = new UsuarioTestDataBuilder().conFechaCreacion(fechaCreacion).conId(1L).build();
 
         assertEquals(1, usuario.getId());
@@ -32,7 +32,22 @@ class UsuarioTest {
         assertEquals("1117522448", usuario.getIdentificacion());
         assertEquals("Perez", usuario.getPrimerApellido());
         assertEquals("Sanchez", usuario.getSegundoApellido());
-        assertEquals("Sanchez", usuario.getSegundoApellido());
+        assertEquals(fechaNacimiento, usuario.getFechaNacimiento());
+        assertEquals(fechaCreacion, usuario.getFechaCreacion());
+    }
+
+    @Test
+    @DisplayName("Deberia crear correctamente el usuario sin segundo apellido")
+    void deberiaCrearCorrectamenteElUsusuarioSinSegundoApellido() {
+        LocalDate fechaNacimiento = LocalDate.from(LocalDate.of(1991, 12, 20));
+        LocalDateTime fechaCreacion = LocalDateTime.now();
+        Usuario usuario = new UsuarioTestDataBuilder().conFechaCreacion(fechaCreacion).conSegundoApellido(null).conId(1L).build();
+
+        assertEquals(1, usuario.getId());
+        assertEquals("Camilo Andres", usuario.getNombres());
+        assertEquals("1117522448", usuario.getIdentificacion());
+        assertEquals("Perez", usuario.getPrimerApellido());
+        Assert.isNull(usuario.getSegundoApellido(), "Sin segundo apellido");
         assertEquals(fechaNacimiento, usuario.getFechaNacimiento());
         assertEquals(fechaCreacion, usuario.getFechaCreacion());
     }
