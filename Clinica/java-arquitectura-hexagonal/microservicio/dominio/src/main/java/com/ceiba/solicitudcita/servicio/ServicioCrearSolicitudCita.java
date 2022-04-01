@@ -42,7 +42,8 @@ public class ServicioCrearSolicitudCita {
         existeUsuarioPorId(dtoEntradaSolicitudCita.getUsuario());
 
         SolicitudCita solicitudCita = fabricaSolicitudCitaModelo.crear(dtoEntradaSolicitudCita);
-        solicitudCita.validar(repositorioSolicitudCita);
+        solicitudCita.validarSiExisteSolicitudCitaPorMedicoFechaHorario(repositorioSolicitudCita);
+        solicitudCita.validarSiExisteSolicitudCitaPorUsuarioFecha(repositorioSolicitudCita);
         solicitudCita.calcularValorCita();
         DtoSolicitudCita dtoSolicitudCitaNuevo = fabricaSolicitudCitaModelo.crear(solicitudCita);
         return this.repositorioSolicitudCita.crear(dtoSolicitudCitaNuevo);

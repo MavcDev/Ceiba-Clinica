@@ -7,7 +7,7 @@ import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 
 public class ServicioConsultaUsuario {
 
-    private static final String EL_USUARIO_NO_EXISTE = "El usuario no existe";
+    public static final String EL_USUARIO_NO_EXISTE = "El usuario no existe";
 
     private final RepositorioUsuario repositorioUsuario;
     private final DaoUsuario daoUsuario;

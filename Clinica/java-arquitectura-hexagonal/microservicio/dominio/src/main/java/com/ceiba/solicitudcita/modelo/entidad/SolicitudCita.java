@@ -76,12 +76,7 @@ public class SolicitudCita {
         validarFechaCitaSabadoDomingo(fechaCita);
     }
 
-    public void validar(RepositorioSolicitudCita repositorioSolicitudCita){
-        existeSolicitudCitaPorMedicoFechaHorario(repositorioSolicitudCita);
-        existeSolicitudCitaPorUsuarioFecha(repositorioSolicitudCita);
-    }
-
-    private void existeSolicitudCitaPorMedicoFechaHorario(RepositorioSolicitudCita repositorioSolicitudCita){
+    public void validarSiExisteSolicitudCitaPorMedicoFechaHorario(RepositorioSolicitudCita repositorioSolicitudCita){
         boolean existe = repositorioSolicitudCita.existeSolcitudCitaPorMedicoFechaHorario(medico.getId(), fechaCita, horarioDia.getId());
         if(existe){
             throw new ExcepcionSolicitudCita(
@@ -94,7 +89,7 @@ public class SolicitudCita {
         }
     }
 
-    private void existeSolicitudCitaPorUsuarioFecha(RepositorioSolicitudCita repositorioSolicitudCita){
+    public void validarSiExisteSolicitudCitaPorUsuarioFecha(RepositorioSolicitudCita repositorioSolicitudCita){
         boolean existe = repositorioSolicitudCita.existeSolicitudCitaPorUsuarioFecha(usuario.getId(), fechaCita);
         if(existe){
             throw new ExcepcionSolicitudCita(

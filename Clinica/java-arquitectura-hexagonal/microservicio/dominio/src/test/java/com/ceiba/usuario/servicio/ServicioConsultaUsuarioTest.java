@@ -3,19 +3,18 @@ package com.ceiba.usuario.servicio;
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
 import com.ceiba.usuario.modelo.dto.DtoPresentacionUsuario;
-import com.ceiba.usuario.modelo.entidad.Usuario;
 import com.ceiba.usuario.puerto.dao.DaoUsuario;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
-import com.ceiba.usuario.servicio.testdatabuilder.UsuarioTestDataBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalDate;
 
+import static com.ceiba.usuario.servicio.ServicioConsultaUsuario.EL_USUARIO_NO_EXISTE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ServicioConsultaUsuarioTest {
+class ServicioConsultaUsuarioTest {
 
     @Test
     @DisplayName("Deberia lanzar una exepcion sin datos")
@@ -25,7 +24,7 @@ public class ServicioConsultaUsuarioTest {
         Mockito.when(repositorioUsuario.existe(Mockito.anyString())).thenReturn(false);
         ServicioConsultaUsuario servicioConsultaUsuario = new ServicioConsultaUsuario(repositorioUsuario, daoUsuario);
 
-        BasePrueba.assertThrows(() -> servicioConsultaUsuario.buscarPorIdentificacion("1117522445"), ExcepcionSinDatos.class,"El usuario no existe");
+        BasePrueba.assertThrows(() -> servicioConsultaUsuario.buscarPorIdentificacion("1117522445"), ExcepcionSinDatos.class,EL_USUARIO_NO_EXISTE);
     }
 
     @Test
@@ -42,7 +41,7 @@ public class ServicioConsultaUsuarioTest {
         RepositorioUsuario repositorioUsuario = Mockito.mock(RepositorioUsuario.class);
         Mockito.when(repositorioUsuario.existe(Mockito.anyString())).thenReturn(true);
         ServicioConsultaUsuario servicioConsultaUsuario = new ServicioConsultaUsuario(repositorioUsuario, daoUsuario);
-        
+
         DtoPresentacionUsuario dtoPresentacionUsuarioRespuesta = servicioConsultaUsuario.buscarPorIdentificacion("1117522445");
 
         assertEquals(dtoPresentacionUsuario.getId(), dtoPresentacionUsuarioRespuesta.getId());

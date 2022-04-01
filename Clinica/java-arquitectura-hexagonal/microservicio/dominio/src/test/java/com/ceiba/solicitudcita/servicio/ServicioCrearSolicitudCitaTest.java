@@ -34,7 +34,6 @@ import org.mockito.Mockito;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import static com.ceiba.solicitudcita.modelo.entidad.SolicitudCita.EL_MEDICO_YA_TIENE_SOLICITUD_FECHA_HORA;
 import static com.ceiba.solicitudcita.modelo.entidad.SolicitudCita.EL_USUARIO_YA_TIENE_SOLICITUD_FECHA;
