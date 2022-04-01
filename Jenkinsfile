@@ -49,6 +49,15 @@ pipeline {
         sh 'Clinica/java-arquitectura-hexagonal/comun/gradlew --b Clinica/java-arquitectura-hexagonal/microservicio/build.gradle clean'
         sh 'Clinica/java-arquitectura-hexagonal/comun/gradlew --b Clinica/java-arquitectura-hexagonal/microservicio/build.gradle build'
       }
+    }
+
+    stage('Deploy') {
+      steps {
+        echo "------------>Deploy<------------"
+        //sh 'Clinica/java-arquitectura-hexagonal/comun/gradlew --b Clinica/java-arquitectura-hexagonal/microservicio/build.gradle clean'
+        //sh 'Clinica/java-arquitectura-hexagonal/comun/gradlew --b Clinica/java-arquitectura-hexagonal/microservicio/build.gradle build'
+        //sh 'Clinica/java-arquitectura-hexagonal/comun/gradlew --b Clinica/java-arquitectura-hexagonal/microservicio/build.gradle bootrun'
+      }
     }  
   }
 
