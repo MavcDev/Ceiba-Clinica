@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import static com.ceiba.solicitudcita.adaptador.persistencia.TablaSolicitudCita.*;
 
 @Component
-public class FabricaParametroPersistenciaSolicitudCita {
+public class ParametroPersistenciaSolicitudCita {
 
     public MapSqlParameterSource crear(DtoSolicitudCita dtoSolicitudCita){
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();

@@ -2,7 +2,7 @@ package com.ceiba.usuario.adaptador.repositorio;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.usuario.adaptador.persistencia.FabricaParametroPersistenciaUsuario;
+import com.ceiba.usuario.adaptador.persistencia.ParametroPersistenciaUsuario;
 import com.ceiba.usuario.adaptador.persistencia.MapeoDtoUsuario;
 import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
@@ -16,7 +16,7 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     private static final String IDENTIFICACION = "identificacion";
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
-    private final FabricaParametroPersistenciaUsuario fabricaParametroPersistenciaUsuario;
+    private final ParametroPersistenciaUsuario parametroPersistenciaUsuario;
 
     @SqlStatement(namespace="usuario", value="crear")
     private static String sqlCrear;
@@ -30,14 +30,14 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     @SqlStatement(namespace="usuario", value="existePorId")
     private static String sqlExistePorId;
 
-    public RepositorioUsuarioMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate, FabricaParametroPersistenciaUsuario fabricaParametroPersistenciaUsuario) {
+    public RepositorioUsuarioMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate, ParametroPersistenciaUsuario parametroPersistenciaUsuario) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
-        this.fabricaParametroPersistenciaUsuario = fabricaParametroPersistenciaUsuario;
+        this.parametroPersistenciaUsuario = parametroPersistenciaUsuario;
     }
 
     @Override
     public Long crear(DtoUsuario dtoUsuario) {
-        MapSqlParameterSource parametroPersistenciaCrear = fabricaParametroPersistenciaUsuario.crear(dtoUsuario);
+        MapSqlParameterSource parametroPersistenciaCrear = parametroPersistenciaUsuario.crear(dtoUsuario);
         return this.customNamedParameterJdbcTemplate.crear(sqlCrear, parametroPersistenciaCrear);
     }
 

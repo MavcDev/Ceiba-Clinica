@@ -2,7 +2,7 @@ package com.ceiba.solicitudcita.adaptador.repositorio;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.solicitudcita.adaptador.persistencia.FabricaParametroPersistenciaSolicitudCita;
+import com.ceiba.solicitudcita.adaptador.persistencia.ParametroPersistenciaSolicitudCita;
 import com.ceiba.solicitudcita.modelo.dto.DtoSolicitudCita;
 import com.ceiba.solicitudcita.puerto.repositorio.RepositorioSolicitudCita;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -19,7 +19,7 @@ public class RepositorioSolicitudCitaMysql implements RepositorioSolicitudCita {
     private static final String ID_HORARIO = "horario";
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
-    private final FabricaParametroPersistenciaSolicitudCita fabricaParametroPersistenciaSolicitudCita;
+    private final ParametroPersistenciaSolicitudCita parametroPersistenciaSolicitudCita;
 
     @SqlStatement(namespace="solicitudcita", value="crear")
     private static String sqlCrear;
@@ -30,14 +30,14 @@ public class RepositorioSolicitudCitaMysql implements RepositorioSolicitudCita {
     @SqlStatement(namespace="solicitudcita", value="existePorMedicoFechaHorario")
     private static String sqlExistePorMedicoFechaHorario;
 
-    public RepositorioSolicitudCitaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate, FabricaParametroPersistenciaSolicitudCita fabricaParametroPersistenciaSolicitudCita) {
+    public RepositorioSolicitudCitaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate, ParametroPersistenciaSolicitudCita parametroPersistenciaSolicitudCita) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
-        this.fabricaParametroPersistenciaSolicitudCita = fabricaParametroPersistenciaSolicitudCita;
+        this.parametroPersistenciaSolicitudCita = parametroPersistenciaSolicitudCita;
     }
 
     @Override
     public Long crear(DtoSolicitudCita dtoSolicitudCita) {
-        MapSqlParameterSource parametroPersistenciaCrear = fabricaParametroPersistenciaSolicitudCita.crear(dtoSolicitudCita);
+        MapSqlParameterSource parametroPersistenciaCrear = parametroPersistenciaSolicitudCita.crear(dtoSolicitudCita);
         return this.customNamedParameterJdbcTemplate.crear(sqlCrear, parametroPersistenciaCrear);
     }
 

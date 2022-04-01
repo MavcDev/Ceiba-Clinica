@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import static com.ceiba.usuario.adaptador.persistencia.TablaUsuario.*;
 
 @Component
-public class FabricaParametroPersistenciaUsuario {
+public class ParametroPersistenciaUsuario {
 
     public MapSqlParameterSource crear(DtoUsuario dtoUsuario){
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
