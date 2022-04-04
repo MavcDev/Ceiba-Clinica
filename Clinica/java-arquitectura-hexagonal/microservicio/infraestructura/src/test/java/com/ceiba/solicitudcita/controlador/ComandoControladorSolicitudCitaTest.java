@@ -39,9 +39,9 @@ class ComandoControladorSolicitudCitaTest {
     void deberiaCrearUnaSolicitudCita() throws Exception{
         ComandoSolicitudCita comandoSolicitudCita = new ComandoSolicitudCitaTestDataBuilder().build();
         mocMvc.perform(post("/solicitudcitas")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(comandoSolicitudCita)))
-                .andExpect(status().isOk())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(comandoSolicitudCita)))
+                .andExpect(status().isCreated())
                 .andExpect(content().json("{'valor': 2}"));
     }
 }

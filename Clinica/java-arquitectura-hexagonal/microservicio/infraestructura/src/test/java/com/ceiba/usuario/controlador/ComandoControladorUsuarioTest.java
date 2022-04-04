@@ -38,7 +38,7 @@ class ComandoControladorUsuarioTest {
         mocMvc.perform(post("/usuarios")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoUsuario)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(content().json("{'valor': 2}"));
     }
 }
