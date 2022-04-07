@@ -21,3 +21,4 @@ on sc.fk_especialidad = ep.id
 join horariodia ho
 on sc.fk_horario = ho.id
 where fk_usuario = :usuario
+order by sc.fecha_solicitud desc
