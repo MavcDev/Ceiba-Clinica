@@ -19,31 +19,27 @@ class ServicioCrearUsuarioTest {
     @DisplayName("Deberia lanzar una exepcion cuando se valide la existencia del Usuario")
     void deberiaLanzarUnaExepcionCuandoSeValideLaExistenciaDelUsuario() {
         Usuario usuario = new UsuarioTestDataBuilder().build();
-        DtoUsuario dtoUsuario = new FabricaUsuarioModelo(null).crear(usuario);
-
         RepositorioUsuario repositorioUsuario = Mockito.mock(RepositorioUsuario.class);
+
         Mockito.when(repositorioUsuario.existePorId(Mockito.anyLong())).thenReturn(true);
         Mockito.when(repositorioUsuario.existe(Mockito.anyString())).thenReturn(true);
 
         ServicioCrearUsuario servicioCrearUsuario = new ServicioCrearUsuario(repositorioUsuario);
-
-        BasePrueba.assertThrows(() -> servicioCrearUsuario.ejecutar(dtoUsuario), ExcepcionDuplicidad.class,"El usuario ya existe en el sistema");
+        BasePrueba.assertThrows(() -> servicioCrearUsuario.ejecutar(usuario), ExcepcionDuplicidad.class,"El usuario ya existe en el sistema");
     }
 
     @Test
     @DisplayName("Deberia Crear el usuario de manera correcta")
     void deberiaCrearElUsuarioDeManeraCorrecta() {
         Usuario usuario = new UsuarioTestDataBuilder().build();
-        DtoUsuario dtoUsuario = new FabricaUsuarioModelo(null).crear(usuario);
 
         RepositorioUsuario repositorioUsuario = Mockito.mock(RepositorioUsuario.class);
         Mockito.when(repositorioUsuario.existe(Mockito.anyString())).thenReturn(false);
         Mockito.when(repositorioUsuario.crear(Mockito.any(DtoUsuario.class))).thenReturn(10L);
 
         ServicioCrearUsuario servicioCrearUsuario = new ServicioCrearUsuario(repositorioUsuario);
-        Long idUsuario = servicioCrearUsuario.ejecutar(dtoUsuario);
+        Long idUsuario = servicioCrearUsuario.ejecutar(usuario);
 
         assertEquals(10L,idUsuario);
-        Mockito.verify(repositorioUsuario, Mockito.times(1)).crear(dtoUsuario);
     }
 }

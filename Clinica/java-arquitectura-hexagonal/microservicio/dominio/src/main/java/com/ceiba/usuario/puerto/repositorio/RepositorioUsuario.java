@@ -13,7 +13,7 @@ public interface RepositorioUsuario {
     /**
      * Permite bsucar un usuario con el id
      * @param id
-     * @return Usuario
+     * @return DtoUsuario
      */
     DtoUsuario buscarPorId(Long id);
 

@@ -1,10 +1,7 @@
 package com.ceiba.configuracion;
 
-import com.ceiba.especialidad.puerto.repositorio.RepositorioEspecialidad;
-import com.ceiba.horariodia.puerto.repositorio.RepositorioHorarioDia;
-import com.ceiba.medico.puerto.repositorio.RepositorioMedico;
-import com.ceiba.solicitudcita.puerto.repositorio.RepositorioSolicitudCita;
-import com.ceiba.solicitudcita.servicio.ServicioCrearSolicitudCita;
+import com.ceiba.solicitud.puerto.repositorio.RepositorioSolicitud;
+import com.ceiba.solicitud.servicio.ServicioCrearSolicitud;
 import com.ceiba.usuario.puerto.dao.DaoUsuario;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.usuario.servicio.ServicioConsultaUsuario;
@@ -26,13 +23,7 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServicioCrearSolicitudCita servicioCrearSolicitudCita(
-            RepositorioSolicitudCita repositorioSolicitudCita,
-            RepositorioUsuario repositorioUsuario,
-            RepositorioMedico repositorioMedico,
-            RepositorioEspecialidad repositorioEspecialidad,
-            RepositorioHorarioDia repositorioHorarioDia){
-        return new ServicioCrearSolicitudCita(
-                repositorioSolicitudCita, repositorioUsuario, repositorioMedico, repositorioEspecialidad, repositorioHorarioDia);
+    public ServicioCrearSolicitud servicioCrearSolicitudCita(RepositorioSolicitud repositorioSolicitud, RepositorioUsuario repositorioUsuario){
+        return new ServicioCrearSolicitud(repositorioSolicitud, repositorioUsuario);
     }
 }

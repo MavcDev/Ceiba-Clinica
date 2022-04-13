@@ -16,18 +16,18 @@ public class ServicioCrearUsuario {
 
     public ServicioCrearUsuario(RepositorioUsuario repositorioUsuario) {
         this.repositorioUsuario = repositorioUsuario;
-        this.fabricaUsuarioModelo = new FabricaUsuarioModelo(repositorioUsuario);
+        this.fabricaUsuarioModelo = new FabricaUsuarioModelo();
     }
 
-    public Long ejecutar(DtoUsuario dtoUsuario) {
-        validarExistenciaPrevia(dtoUsuario);
-        Usuario usuario = fabricaUsuarioModelo.crear(dtoUsuario);
+    public Long ejecutar(Usuario usuario) {
+        validarExistenciaPrevia(usuario.getIdentificacion());
         usuario.validarFechaCreacion();
-        return this.repositorioUsuario.crear(dtoUsuario);
+        DtoUsuario dtoUsuarioNuevo = this.fabricaUsuarioModelo.crear(usuario);
+        return this.repositorioUsuario.crear(dtoUsuarioNuevo);
     }
 
-    private void validarExistenciaPrevia(DtoUsuario dtoUsuario) {
-        boolean existe = this.repositorioUsuario.existe(dtoUsuario.getIdentificacion());
+    private void validarExistenciaPrevia(String identificacion) {
+        boolean existe = this.repositorioUsuario.existe(identificacion);
         if(existe) {
             throw new ExcepcionDuplicidad(EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA);
         }

@@ -2,10 +2,9 @@ package com.ceiba.usuario.comando.manejador;
 
 import com.ceiba.ComandoRespuesta;
 import com.ceiba.manejador.ManejadorComandoRespuesta;
-import com.ceiba.usuario.modelo.dto.DtoUsuario;
+import com.ceiba.usuario.modelo.entidad.Usuario;
 import com.ceiba.usuario.servicio.ServicioCrearUsuario;
 import org.springframework.stereotype.Component;
-
 import com.ceiba.usuario.comando.ComandoUsuario;
 import com.ceiba.usuario.comando.fabrica.FabricaUsuario;
 
@@ -21,7 +20,7 @@ public class ManejadorCrearUsuario implements ManejadorComandoRespuesta<ComandoU
     }
 
     public ComandoRespuesta<Long> ejecutar(ComandoUsuario comandoUsuario) {
-        DtoUsuario dtoUsuario = this.fabricaUsuario.crear(comandoUsuario);
-        return new ComandoRespuesta<>(this.servicioCrearUsuario.ejecutar(dtoUsuario));
+        Usuario usuario = this.fabricaUsuario.crear(comandoUsuario);
+        return new ComandoRespuesta<>(this.servicioCrearUsuario.ejecutar(usuario));
     }
 }
